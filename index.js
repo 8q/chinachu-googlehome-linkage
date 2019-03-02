@@ -68,8 +68,8 @@ exports.handler = async (event) => {
     const dayword = event.queryResult.parameters.dayword;
     const offset = dayword2offset(dayword);
     const ops = { 'hour': 5, 'minute': 0, 'second': 0, 'millisecond': 0 };
-    const from_epochmills = moment().add(offset, 'd').set(ops).valueOf();
-    const to_epochmills = moment().add(offset + 1, 'd').set(ops).valueOf();
+    const from_epochmills = moment().add(offset, 'd').add(-5, 'h').set(ops).valueOf();
+    const to_epochmills = moment().add(offset + 1, 'd').add(-5, 'h').set(ops).valueOf();
 
     const target_programs_info = [].concat(recorded).concat(recording).concat(reserves)
         .filter(e => e.start >= from_epochmills && e.start < to_epochmills)
